@@ -8,17 +8,22 @@ import { Ionicons } from '@expo/vector-icons';
 import AllExpences from './screens/AllExpences';
 import ManageExpences from './screens/ManageExpences';
 import RecentExpences from './screens/RecentExpences';
+import IconButtons from './components/Ui/IconButton';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function ExpenceOverview(){
-  return <Tab.Navigator screenOptions={{
+  return <Tab.Navigator screenOptions={({navigation})=>({
     headerStyle : {backgroundColor: GlobalStyles.colors.primary500},
     headerTintColor: '#fff',
     tabBarStyle: {backgroundColor: GlobalStyles.colors.primary500},
-    tabBarActiveTintColor: GlobalStyles.colors.accent500 
-  }}>
+    tabBarActiveTintColor: GlobalStyles.colors.accent500 ,
+    headerRight : (tintColor) =>
+    <IconButtons icon="add" size={30} color={tintColor} onPress={() => {
+      navigation.navigate('ManageExpences')
+    }}/>
+  })}>
     
     <Tab.Screen name='RecentExpences' 
     component={RecentExpences}
@@ -46,11 +51,20 @@ export default function App() {
     <>
     <StatusBar style="auto" />
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator 
+      screenOptions={{
+        headerStyle : {backgroundColor: GlobalStyles.colors.primary500},
+        headerTintColor: '#fff'
+      }}>
         <Stack.Screen name='ExpenceOverview' 
         component={ExpenceOverview}
         options={{ headerShown : false}}/>
-        <Stack.Screen name='ManageExpences' component={ManageExpences}/>
+        <Stack.Screen name='ManageExpences' 
+        component={ManageExpences}
+        options={{
+          presentation: 'modal'
+        }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
     </>
