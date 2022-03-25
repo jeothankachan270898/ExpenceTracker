@@ -10,9 +10,9 @@ function RecentExpences (){
      const today = new Date();
      const date7Daysago = getDateMinusDays(today, 7);
 
-     return expence.date > date7Daysago;
+     return (expence.date > date7Daysago) && (expence.date <= today);
 
  })
-return <ExpencesOutput expences={recentExpences} expencesPeriod="Last 7 Days"/>
+return <ExpencesOutput expences={recentExpences} expencesPeriod="Last 7 Days" fallbackText="No Recent Expenses"/>
 }
 export default RecentExpences;
