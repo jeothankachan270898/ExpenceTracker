@@ -2,8 +2,9 @@ import {View, StyleSheet} from 'react-native';
 import {useLayoutEffect,useContext} from 'react';
 import IconButtons from '../components/Ui/IconButton';
 import { GlobalStyles } from '../constants/styles';
-import Button from '../components/Ui/Button';
+
 import { ExpencesContext } from '../store/Expences_context';
+import ExpenceForm from '../components/ManageExpences/ExpenceForm';
 
 
 function ManageExpences ({route,navigation}){
@@ -25,20 +26,20 @@ function ManageExpences ({route,navigation}){
         
         navigation.goBack();
     };
-    function confirmHandler(){
+    function confirmHandler(expenceData){
         if(isEdited){
-            expenceCtx.updateExpences();
+            expenceCtx.updateExpences(editedExpenceId, expenceData);
         }else{
-            expenceCtx.addExpences();
+            expenceCtx.addExpences(expenceData);
         }
         navigation.goBack();
     }
 return (
     <View style={styles.container}>
-        <View style={styles.Buttons}>
-        <Button style={styles.Button} mode='flat' onPress={cancelHandler}>Cancel</Button>
-        <Button style={styles.Button} onPress={confirmHandler}>{isEdited? 'Update': 'Add'}</Button>
-        </View>
+        <ExpenceForm  onCancel={cancelHandler}
+        onSubmit={confirmHandler}
+        submitButtonLabel={isEdited? 'Update': 'Add'}/>
+        
        
         {isEdited && (
         <View style={styles.deleteContainer}>
@@ -69,13 +70,5 @@ const styles=StyleSheet.create({
         borderTopColor: GlobalStyles.colors.primary200,
         alignItems: 'center'
     },
-    Buttons : {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    Button : {
-        minWidth: 120,
-        marginHorizontal: 8
-    }
+    
 })
