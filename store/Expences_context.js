@@ -54,7 +54,7 @@ const DUMMY_EXPENCES = [
 export const ExpencesContext = createContext({
     expences : [],
     addExpences: () =>{},
-    deleteExpences: () => {},
+    deleteExpences: (id) => {},
     updateExpences: () => {}
 })
 
@@ -84,7 +84,7 @@ function ExpencesContextProvider ({children}){
     function addExpences({expenceData}) {
         dispatch({type: 'ADD', payload: expenceData});
     }
-    function deleteExpences({id}) {
+    function deleteExpences(id) {
         dispatch({type : 'DELETE', payload: id})
     }
     function updateExpences({id , expenceData})  {

@@ -34,7 +34,8 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderRadius: 5,
-        elevation: 10
+        elevation: 10,
+        
     },
     textBase : {
         color: GlobalStyles.colors.primary50
