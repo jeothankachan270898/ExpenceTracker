@@ -9,6 +9,7 @@ import AllExpences from './screens/AllExpences';
 import ManageExpences from './screens/ManageExpences';
 import RecentExpences from './screens/RecentExpences';
 import IconButtons from './components/Ui/IconButton';
+import ExpencesContextProvider from './store/Expences_context';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,6 +51,7 @@ export default function App() {
   return (
     <>
     <StatusBar style="auto" />
+    <ExpencesContextProvider>
     <NavigationContainer>
       <Stack.Navigator 
       screenOptions={{
@@ -67,6 +69,7 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </ExpencesContextProvider>
     </>
       
     
