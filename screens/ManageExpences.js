@@ -26,7 +26,7 @@ function ManageExpences ({route,navigation}){
         
         navigation.goBack();
     };
-    function confirmHandler(expenceData){
+    function confirmHandler({expenceData}){
         if(isEdited){
             expenceCtx.updateExpences(editedExpenceId, expenceData);
         }else{
@@ -36,9 +36,10 @@ function ManageExpences ({route,navigation}){
     }
 return (
     <View style={styles.container}>
-        <ExpenceForm  onCancel={cancelHandler}
+        <ExpenceForm  
+        submitButtonLabel={isEdited? 'Update': 'Add'}
         onSubmit={confirmHandler}
-        submitButtonLabel={isEdited? 'Update': 'Add'}/>
+        onCancel={cancelHandler}/>
         
        
         {isEdited && (

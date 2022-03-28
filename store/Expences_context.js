@@ -54,7 +54,7 @@ const DUMMY_EXPENCES = [
 export const ExpencesContext = createContext({
     expences : [],
     addExpences: () =>{},
-    deleteExpences: (id) => {},
+    deleteExpences: () => {},
     updateExpences: () => {}
 })
 
