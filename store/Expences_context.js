@@ -52,10 +52,10 @@ const DUMMY_EXPENCES = [
 ];
 
 export const ExpencesContext = createContext({
-    expences : [],
-    addExpences: () =>{},
-    deleteExpences: () => {},
-    updateExpences: () => {}
+    expence : [],
+    addExpences: ({ description, amount, date }) =>{},
+    deleteExpences: (id) => {},
+    updateExpences: (id, { description, amount, date }) => {}
 })
 
 function expenceReducer (state, action){
@@ -81,14 +81,14 @@ function expenceReducer (state, action){
 function ExpencesContextProvider ({children}){
     const [expenceState , dispatch] = useReducer(expenceReducer, DUMMY_EXPENCES);
 
-    function addExpences({expenceData}) {
+    function addExpences(expenceData) {
         dispatch({type: 'ADD', payload: expenceData});
     }
     function deleteExpences(id) {
         dispatch({type : 'DELETE', payload: id})
     }
     function updateExpences({id , expenceData})  {
-        dispatch({type : 'UPDATE', payload:{id :id ,data: expenceData}})
+        dispatch({type : 'UPDATE', payload:{id: id ,data: expenceData}})
     }  
       
     

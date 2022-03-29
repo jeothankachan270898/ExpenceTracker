@@ -5,6 +5,7 @@ import { GlobalStyles } from '../constants/styles';
 
 import { ExpencesContext } from '../store/Expences_context';
 import ExpenceForm from '../components/ManageExpences/ExpenceForm';
+import { storeExpense } from '../Util/Http';
 
 
 function ManageExpences ({route,navigation}){
@@ -30,6 +31,7 @@ function ManageExpences ({route,navigation}){
         if(isEdited){
             expenceCtx.updateExpences(editedExpenceId, expenceData);
         }else{
+            storeExpense(expenceData);
             expenceCtx.addExpences(expenceData);
         }
         navigation.goBack();
